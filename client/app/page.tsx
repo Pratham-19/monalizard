@@ -37,24 +37,24 @@ export default function Home() {
             />
           </div>
           <section className=" w-[75%] flex flex-col justify-around items-center">
-            <h2 className="text-7xl font-bold">Discover Web3</h2>
-            <h3 className="italic text-2xl text-center">
-              Explor Dapp with community solved puzzles.
+            <h2 className="text-6xl lg:text-8xl font-bold">Discover Web3</h2>
+            <h3 className="italic text-2xl lg:text-3xl text-center font-[500]">
+              Explore Dapp with community solved puzzles.
             </h3>
-            <div className="grid grid-cols-3 gap-3 ">
+            <div className="grid grid-cols-3 gap-3">
               {data.map((item) => (
                 <div
                   key={item.title}
-                  className="bg-[#200F00] flex justify-center items-center  space-x-2 rounded-xl p-2 hover:scale-95 transition-taransform duration-300 backdrop-blur-sm shadow-md"
+                  className="bg-[#200F00] flex justify-center items-center space-x-3 rounded-xl p-2 hover:scale-95 transition-taransform duration-300 backdrop-blur-sm shadow-md px-5"
                 >
                   <Image
                     src={item.icon}
                     alt="hero"
                     width={60}
                     height={60}
-                    className="p-1"
+                    className="p-0.5 lg:w-16 lg:h-16"
                   />
-                  <h2 className="text-[#EFB359]">{item.title}</h2>
+                  <h2 className="text-[#EFB359] lg:text-lg">{item.title}</h2>
                 </div>
               ))}
             </div>
@@ -161,21 +161,21 @@ export default function Home() {
         alt="l1"
         width={800}
         height={800}
-        className="absolute -top-10 -right-5 -z-10 opacity-10"
+        className="absolute -top-10 -right-[200px] -z-10 opacity-20"
       />
       <Image
         src="/a3.png"
         alt="l1"
         width={800}
         height={800}
-        className="absolute bottom-10 -right-[300px] -z-10 opacity-10"
+        className="absolute bottom-10 -right-[300px] -z-10 opacity-20"
       />
       <Image
         src="/a2.png"
         alt="l1"
         width={800}
         height={800}
-        className="absolute top-[500px] -left-72 -z-10 opacity-10"
+        className="absolute top-[500px] -left-72 -z-10 opacity-20"
       />
     </MaxWidthWrapper>
   );
