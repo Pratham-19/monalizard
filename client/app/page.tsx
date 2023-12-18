@@ -26,7 +26,7 @@ export default function Home() {
     <MaxWidthWrapper className="flex flex-col items-center py-4 relative overflow-x-hidden">
       <LandingNavbar />
       <main className="mt-7 w-[90%] mx-auto">
-        <div className="bg-[#FFFBF8]/[0.3] border rounded-[50px] h-[63vh] flex backdrop-blur-sm pl-5 pr-7 mt-7 ">
+        <div className="bg-[#FFFBF8]/[0.3] border rounded-[50px] h-[65vh] flex backdrop-blur-sm pl-5 pr-7 mt-7 ">
           <div className="w-[35%] flex justify-center items-center ">
             <Image
               src="/hero.jpg"
@@ -60,24 +60,31 @@ export default function Home() {
             </div>
           </section>
         </div>
-        <div className="flex h-[38vh] my-10 ">
-          <section>
+        <div className="flex h-[48vh] my-16 ">
+          <section className="w-[40%]">
             <Image
               src="/G.png"
               alt="hero"
               width={868}
               height={952}
-              className="aspect-auto h-full px-8"
+              className="aspect-auto h-full pr-8"
             />
           </section>
-          <h2 className="italic text-2xl text-left my-auto font-semibold leading-[4rem]">
-            “Get puzzle pieces from time to time or earn them by completing a
-            task. But watch out, your time run fast. Make frens to complete
-            them, don&apos;t be last”
-          </h2>
+          <div>
+            <h2 className="italic text-3xl text-left my-auto font-extrabold leading-[4rem]">
+              “Get puzzle pieces from time to time or earn them by completing a
+              task.
+            </h2>
+            <h2 className="italic text-3xl text-left my-8 lg:my-10 font-extrabold leading-[4rem]">
+              But watch out, your time run fast.
+            </h2>
+            <h2 className="italic text-3xl text-left my-auto font-extrabold leading-[4rem]">
+              Make frens to complete them, don&apos;t be last”
+            </h2>
+          </div>
         </div>
 
-        <div className="flex justify-between h-[38vh] my-12">
+        <div className="flex justify-between h-[40vh] my-12">
           <section className="w-[30%] flex flex-col justify-between">
             <div className="bg-[#200F00] rounded-xl p-3 flex justify-center items-center space-x-2 h-[45%] text-[#EFB359]">
               <Image
@@ -87,7 +94,7 @@ export default function Home() {
                 height={40}
                 className="h-10 w-10"
               />
-              <h2>10 Active Puzzles</h2>
+              <h2 className="text-xl">10+ Active Puzzles</h2>
             </div>
             <div className="bg-[#200F00] rounded-xl p-3 flex justify-center items-center space-x-2 h-[45%] text-[#EFB359]">
               <Image
@@ -97,7 +104,7 @@ export default function Home() {
                 height={40}
                 className="w-10 h-10"
               />
-              <h2>50 Active Lizards</h2>
+              <h2 className="text-xl">50 Active Lizards</h2>
             </div>
           </section>
 
@@ -138,20 +145,27 @@ export default function Home() {
             <div className="absolute top-0 left-0 w-full h-full z-10 bg-[#fe8c27] opacity-[0.15] " />
           </Link>
         </div>
-        <div className="flex h-[38vh] my-10 ">
-          <section>
+        <div className="flex h-[44vh] my-16 ">
+          <section className="w-[33%]">
             <Image
               src="/D.png"
               alt="hero"
-              width={808}
+              width={800}
               height={920}
-              className="aspect-auto h-full  pl-8 pr-16"
+              className="aspect-auto h-full pr-16"
             />
           </section>
-          <h2 className="italic text-2xl text-left my-auto font-semibold leading-[4rem]">
-            “Don&apos;t struggle to get users on your dApp, With a puzzle
-            you&apos;ll get a ton ASAP, Create a campaign now, easy and fast”
-          </h2>
+          <div>
+            <h2 className="italic text-3xl text-left my-auto font-extrabold leading-[4rem]">
+              “Don&apos;t struggle to get users on your dApp,
+            </h2>
+            <h2 className="italic text-3xl text-left my-8 lg:my-10 font-extrabold leading-[4rem]">
+              With a puzzle you&apos;ll get a ton ASAP,
+            </h2>
+            <h2 className="italic text-3xl text-left my-auto font-extrabold leading-[4rem]">
+              Create a campaign now, easy and fast”
+            </h2>
+          </div>
         </div>
       </main>
       <Footer className="w-full bg-[hsl(var(--primary))] flex justify-between items-center h-16 rounded-2xl px-3 py-5 " />
