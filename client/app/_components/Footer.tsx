@@ -25,14 +25,14 @@ const Footer = ({ className }: { className?: string }) => {
     >
       <div className="flex">
         <Image
-          src="/footer-logo.svg"
+          src="/injective.png"
           alt="footer-logo"
-          width={40}
-          height={40}
-          className="p-1.5"
+          width={1600}
+          height={1600}
+          className="p-1.5 w-10 h-10 bg-white rounded-full mr-2"
         />
-        <h2 className="font-bold my-auto text-sm">
-          Proudly made by Lizard People for ETHistanbul
+        <h2 className="font-bold my-auto text-base">
+          Proudly made by Lizard People for Illumniate Hackathon
         </h2>
       </div>
       <div className="flex">
