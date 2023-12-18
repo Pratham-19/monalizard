@@ -146,7 +146,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="flex h-[44vh] my-16 ">
-          <section className="w-[33%]">
+          <section className="w-[31%]">
             <Image
               src="/D.png"
               alt="hero"

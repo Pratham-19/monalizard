@@ -24,7 +24,7 @@ const LandingNavbar = ({ className }: { className?: string }) => {
       </Link>
 
       <Link
-        href="/user/signup"
+        href="/user/auth"
         className={
           "bg-white flex justify-between items-center rounded-xl space-x-3 py-2 px-2 border-b-4 border-black/[0.4] hover:translate-y-[3px] hover:border-none transition-transform duration-300"
         }
