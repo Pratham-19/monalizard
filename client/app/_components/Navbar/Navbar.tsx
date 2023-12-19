@@ -7,9 +7,6 @@ import { redirect } from "next/navigation";
 
 const Navbar = ({ className }: { className?: string }) => {
   const { address, isDisconnected } = useAccount();
-  console.log("address", address);
-  console.log("injaddress", getInjectiveAddress(address as string));
-
   if (isDisconnected) {
     redirect("/user/auth");
   }
@@ -43,9 +40,9 @@ const Navbar = ({ className }: { className?: string }) => {
             alt="user"
             width={40}
             height={40}
-            className="h-5 w-5"
+            className="h-6 w-6"
           />
-          <h2 className="text-md font-medium">23</h2>
+          <h2 className="text-md font-medium">1</h2>
         </div>
         {!address && (
           <button
@@ -57,24 +54,19 @@ const Navbar = ({ className }: { className?: string }) => {
           </button>
         )}
         {address && (
-          <button
-            className="flex items-center justify-center"
-            // onClick={() => {
-            //   open({ view: "Networks" });
-            // }}
-          >
+          <div className="flex items-center justify-center">
             <Image
-              src="/nav-eth.svg"
+              src="/wallet.png"
               alt="user"
-              width={40}
-              height={40}
-              className="h-6 w-6"
+              width={512}
+              height={512}
+              className="h-5 w-5 mr-2 grayscale "
             />
             <h2>
               {getInjectiveAddress(address)?.substring(0, 4)}...
               {getInjectiveAddress(address)?.substring(address.length - 3)}
             </h2>
-          </button>
+          </div>
         )}
       </button>
     </nav>

@@ -7,11 +7,11 @@ export default function UserLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex justify-between mx-auto w-full max-w-screen-2xl max-h-screen py-2 px-4  md:px-6 lg:py-4 space-x-2 overflow-hidden ">
-      <div className="basis-[20%]">
+    <div className="flex justify-between mx-auto w-screen max-w-screen-2xl max-h-screen py-2 px-4  md:px-6 lg:py-4 space-x-2 overflow-hidden ">
+      <div className="w-[18vw]">
         <UserDashBoard />
       </div>
-      <div className="basis-[80%] relative pb-20 px-4">
+      <div className="w-[82vw] relative pb-20 px-4">
         <Navbar className="" />
         {children}
       </div>
