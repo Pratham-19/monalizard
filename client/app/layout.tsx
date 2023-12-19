@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { WagmiProvider } from "./_components/Provider/WagmiProvider";
 
 export const metadata: Metadata = {
   title: "Monalizard",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={"min-h-screen antialiased font-space"}>{children}</body>
+      <body className={"min-h-screen antialiased font-space"}>
+        <WagmiProvider>{children}</WagmiProvider>
+      </body>
     </html>
   );
 }
