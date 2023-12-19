@@ -50,7 +50,7 @@ const Navbar = ({ className }: { className?: string }) => {
         {!address && (
           <button
             onClick={() => {
-              open();
+              redirect("/user/auth");
             }}
           >
             <h2>Connect Wallet</h2>

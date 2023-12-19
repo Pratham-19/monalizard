@@ -8,8 +8,8 @@ import {
   waitForTransaction,
   writeContract,
 } from "wagmi/actions";
-import MarketPlace from "@/app/_abis/abi/MarketPlace.json";
-import toast from "react-hot-toast";
+// import MarketPlace from "@/app/_abis/abi/MarketPlace.json";
+// import toast from "react-hot-toast";
 
 export default function Marketplace() {
   const [token, setToken] = React.useState("");
@@ -59,19 +59,19 @@ export default function Marketplace() {
               <button
                 className="bg-black text-[#EFB359] font-semibold px-3 py-1 hover:scale-95 transition-transform duration-300 rounded-xl mt-2"
                 onClick={async () => {
-                  const { request } = await prepareWriteContract({
-                    address: MarketPlace.address as `0x${string}`,
-                    abi: MarketPlace.abi,
-                    functionName: "listItem",
-                    args: [token, price],
-                  });
-                  const { hash: uploadyERC } = await writeContract(request);
-                  await waitForTransaction({ hash: uploadyERC })
-                    .then(() => console.log("transaction confirmed"))
-                    .catch((error) => {
-                      toast.dismiss("uploading");
-                      console.log("error", error);
-                    });
+                  //   const { request } = await prepareWriteContract({
+                  //     address: MarketPlace.address as `0x${string}`,
+                  //     abi: MarketPlace.abi,
+                  //     functionName: "listItem",
+                  //     args: [token, price],
+                  //   });
+                  //   const { hash: uploadyERC } = await writeContract(request);
+                  //   await waitForTransaction({ hash: uploadyERC })
+                  //     .then(() => console.log("transaction confirmed"))
+                  //     .catch((error) => {
+                  //       toast.dismiss("uploading");
+                  //       console.log("error", error);
+                  //     });
                 }}
               >
                 List
