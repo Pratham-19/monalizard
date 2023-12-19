@@ -28,13 +28,13 @@ const PieceCard = () => {
 
         <button className="flex justify-center items-center space-x-3 text-sm bg-black text-[#EFB359] uppercase rounded-2xl px-3 h-full py-1">
           <Image
-            src="/chat-dashboard.svg"
+            src="/puzzle.svg"
             alt="chat-pic"
             width={40}
             height={40}
             className="w-6 h-6"
           />
-          <h2>Go To Chat</h2>
+          <h2>Go To Puzzle</h2>
         </button>
       </section>
     </div>

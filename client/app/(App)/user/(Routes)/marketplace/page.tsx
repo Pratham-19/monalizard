@@ -15,9 +15,53 @@ export default function Marketplace() {
   const [token, setToken] = React.useState("");
   const [price, setPrice] = React.useState("");
 
+  const marketCard: {
+    img: string;
+    price: string;
+    title: string;
+    piece: string;
+  }[] = [
+    {
+      img: "/chicken-glasses.jpg",
+      price: "$2 LZD",
+      title: "El Pollo Loco",
+      piece: '#3 "Glasses"',
+    },
+    {
+      img: "/chicken-glasses.jpg",
+      price: "$2 LZD",
+      title: "El Pollo Loco",
+      piece: '#3 "Glasses"',
+    },
+    {
+      img: "/chicken-glasses.jpg",
+      price: "$2 LZD",
+      title: "El Pollo Loco",
+      piece: '#3 "Glasses"',
+    },
+    {
+      img: "/chicken-glasses.jpg",
+      price: "$2 LZD",
+      title: "El Pollo Loco",
+      piece: '#3 "Glasses"',
+    },
+    {
+      img: "/chicken-glasses.jpg",
+      price: "$2 LZD",
+      title: "El Pollo Loco",
+      piece: '#3 "Glasses"',
+    },
+    {
+      img: "/chicken-glasses.jpg",
+      price: "$2 LZD",
+      title: "El Pollo Loco",
+      piece: '#3 "Glasses"',
+    },
+  ];
+
   return (
-    <div className="w-full h-full my-5 overflow-scroll">
-      <section className="flex justify-between px-2">
+    <div className="w-full h-full my-5 overflow-scroll px-2">
+      <section className="flex justify-between px-2 my-2 lg:my-4">
         <h1 className="text-4xl font-semibold text-center uppercase">
           MarketPlace
         </h1>
@@ -30,10 +74,10 @@ export default function Marketplace() {
             className="w-6 h-6"
           />
 
-          <h2 className="text-[#EFB359] font-medium">Sell Piece</h2>
-          <div className="absolute translate-y-1/2 -translate-x-1/2 hidden group-hover:block transition-transform duration-300">
+          <h2 className="text-[#EFB359] font-medium">Dump Piece</h2>
+          <div className="z-[100] absolute translate-y-1/2 -translate-x-1/2 hidden group-hover:block transition-transform duration-300">
             <section className="bg-[#EFB359] font-semibold w-[16vw] px-1 py-2 rounded-t-xl">
-              Selling Piece
+              Dumping Piece
             </section>
             <section className="bg-white/70 border-[#EFB359] border backdrop-blur-sm font-semibold w-[16vw] px-1 py-2 rounded-b-xl h-[30vh] space-y-4 pt-4">
               <section className="flex justify-between items-center">
@@ -80,12 +124,10 @@ export default function Marketplace() {
           </div>
         </button>
       </section>
-      <div className="flex flex-wrap gap-4 mt-5 mb-12">
-        <MarketplaceCard img="/c1.jpg" />
-        <MarketplaceCard img="/c2.jpg" />
-        <MarketplaceCard img="/c3.jpg" />
-        <MarketplaceCard img="/c4.jpg" />
-        <MarketplaceCard img="/chicken-glasses.jpg" />
+      <div className="flex flex-wrap gap-8 mt-7 mb-12">
+        {marketCard.map((card) => (
+          <MarketplaceCard {...card} key={card.img} />
+        ))}
       </div>
       <Footer className="" />
     </div>

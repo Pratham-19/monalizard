@@ -16,7 +16,7 @@ export default function Dashboard() {
         <CharacterCard />
       </div>
       <section className="flex justify-between">
-        <h2 className="text-2xl font-semibold">Piece Minted</h2>
+        <h2 className="text-3xl font-semibold">Pieces Minted</h2>
         <div className="bg-black text-[#EFB359] space-x-2 px-3 py-2 rounded-xl flex justify-center items-center">
           <Image
             src="/timer.svg"

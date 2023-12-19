@@ -3,14 +3,18 @@
 import React from "react";
 import Image from "next/image";
 
-import { useAccount } from "wagmi";
+import { useAccount, useConnect } from "wagmi";
 import { redirect } from "next/navigation";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
 const Signup = () => {
-  const { isConnected } = useAccount();
+  const { isConnected,connector } = useAccount();
+  const { connect, connectors,  } =
+    useConnect()
   if (isConnected) {
     redirect("/user/dashboard");
   }
+  console.log(isConnected,connectors);
 
   return (
     <div className="w-screen h-screen flex relative">
@@ -18,7 +22,9 @@ const Signup = () => {
         <h2 className="text-6xl mb-4">Start Puzzling</h2>
         <section className="flex flex-col space-y-4 mt-7">
           <button
-            onClick={() => {}}
+            onClick={() => {
+             connect({ connector: connectors[0] });
+            }}
             className="flex items-center space-x-5 hover:scale-[0.95] transition-transform duration-300 px-10 py-6 rounded-3xl shadow-lg border border-black w-[20vw]"
           >
             <Image

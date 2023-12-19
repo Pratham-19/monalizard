@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { useAccount, useEnsName } from "wagmi";
+import { useAccount } from "wagmi";
 
 const UserDashBoard = () => {
   const pathname = usePathname();
@@ -14,9 +14,6 @@ const UserDashBoard = () => {
   const [showQuest, setShowQuest] = useState(false);
   const [showMarketplace, setShowMarketplace] = useState(false);
   const { address } = useAccount();
-  //   const { data, isError, isLoading } = useEnsName({
-  //     address,
-  //   });
 
   const menu: {
     name: string;
@@ -111,17 +108,21 @@ const UserDashBoard = () => {
         <section className="flex space-x-3 items-center bg-[hsl(var(--secondary))] p-4 rounded-xl mt-4 ">
           <Avatar
             size={40}
-            name={address}
+            name={address ?? "sam.lens"}
             variant="beam"
             colors={["#92A1C6", "#35147c", "#ff0808", "#C271B4", "#C20D90"]}
           />
-          <h2 className="text-xl truncate">
-            {getInjectiveAddress(address as string)?.substring(0, 6)}...
-            {getInjectiveAddress(address as string)?.substring(
-              address!.length,
-              address!.length - 3
-            )}
-          </h2>
+          {address ? (
+            <h2 className="text-xl truncate">
+              {getInjectiveAddress(address as string)?.substring(0, 6)}...
+              {getInjectiveAddress(address as string)?.substring(
+                address!.length,
+                address!.length - 3
+              )}
+            </h2>
+          ) : (
+            <h2 className="text-xl truncate">Sam.inj</h2>
+          )}
         </section>
         <section>
           {menu.map((item) => (
