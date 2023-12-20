@@ -8,13 +8,19 @@ import {
 // import MarketPlace from "@/app/_abis/abi/MarketPlace.json";
 // import toast from "react-hot-toast";
 
-const MarketplaceCard = ({ img,price,title,piece }: { img: string
-price: string,
-title: string,
-piece: string,
+const MarketplaceCard = ({
+  img,
+  price,
+  title,
+  piece,
+}: {
+  img: string;
+  price: string;
+  title: string;
+  piece: string;
 }) => {
   return (
-    <div className="bg-white border-[1.5px] my-2 border-black flex flex-col rounded-2xl overflow-hidden w-56 hover:scale-[1.03] transition-transform duration-300 shadow-xl backdrop-blur-md ">
+    <div className="bg-white border-[1.5px] my-2 border-black flex flex-col rounded-2xl overflow-hidden w-52 hover:scale-[1.03] transition-transform duration-300 shadow-xl backdrop-blur-md">
       <section className="h-[64%]">
         <Image
           src={img}
@@ -45,10 +51,7 @@ piece: string,
             height={40}
             className="w-6 h-6 ml-4"
           />
-          <h2 className="font-semibold">
-            
-          {price}
-            </h2>
+          <h2 className="font-semibold">{price}</h2>
           <button
             className="text-sm bg-black text-[#EFB359] uppercase rounded-2xl px-3 h-full py-1 self-end"
             onClick={async () => {

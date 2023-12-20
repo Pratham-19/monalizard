@@ -15,6 +15,8 @@ export default function Marketplace() {
   const [token, setToken] = React.useState("");
   const [price, setPrice] = React.useState("");
 
+  //TODO: Update dump button
+
   const marketCard: {
     img: string;
     price: string;
@@ -65,7 +67,7 @@ export default function Marketplace() {
         <h1 className="text-4xl font-semibold text-center uppercase">
           MarketPlace
         </h1>
-        <button className="bg-black rounded-xl flex justify-center items-center space-x-2 px-5 hover:scale-[0.97] transition-transform duration-300 relative group">
+        <button className="bg-black rounded-xl flex justify-center items-center space-x-2 px-5 hover:scale-[0.97] transition-transform duration-300 relative group z-[80]">
           <Image
             src="/list.svg"
             alt="add"
@@ -124,7 +126,7 @@ export default function Marketplace() {
           </div>
         </button>
       </section>
-      <div className="flex flex-wrap gap-8 mt-7 mb-12">
+      <div className="flex flex-wrap gap-5 mt-7 mb-12">
         {marketCard.map((card) => (
           <MarketplaceCard {...card} key={card.img} />
         ))}

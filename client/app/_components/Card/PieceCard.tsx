@@ -3,7 +3,7 @@ import React from "react";
 
 const PieceCard = () => {
   return (
-    <div className="bg-white border-[1.5px] my-2 border-black flex flex-col rounded-2xl overflow-hidden w-52 hover:scale-[1.02] transition-transform duration-300 ml-2 ">
+    <div className="bg-white border-[1.5px] my-2 border-black flex flex-col rounded-2xl overflow-hidden w-52 hover:scale-[1.02] transition-transform duration-300 ml-2 shadow-xl ">
       <section className="h-[62%]">
         <Image
           src="/chicken-glasses.jpg"
@@ -26,9 +26,9 @@ const PieceCard = () => {
           <h2>#3 &quot;Glasses&quot;</h2>
         </section>
 
-        <button className="flex justify-center items-center space-x-3 text-sm bg-black text-[#EFB359] uppercase rounded-2xl px-3 h-full py-1">
+        <button className="mb-10 flex justify-center items-center space-x-3 text-sm bg-black text-[#EFB359] uppercase rounded-2xl px-3 h-full py-1">
           <Image
-            src="/puzzle.svg"
+            src="/puzzle-yellow.svg"
             alt="chat-pic"
             width={40}
             height={40}

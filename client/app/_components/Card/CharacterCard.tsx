@@ -1,26 +1,26 @@
 import Image from "next/image";
 import React from "react";
 
-const CharacterCard = () => {
+const CharacterCard = ({ img }: { img: string }) => {
   return (
-    <div className="w-[45vw] border my-2 border-black flex rounded-xl overflow-hidden ">
-      <section className="relative w-[48%] flex flex-col items-center overflow-hidden border p-2">
+    <div className="min-w-[30vw] max-w-[32vw] border-[1.6px] my-2 border-black flex rounded-xl overflow-hidden shadow-lg hover:scale-[1.03] transition-transform duration-300 ml-2">
+      <section className="relative w-[48%] flex flex-col items-center overflow-hidden  p-2">
         <Image
-          src="/quest-hen.png"
-          alt="hen-quest"
+          src={img}
+          alt="character-img"
           width={1024}
           height={1024}
           className="rounded-xl my-auto"
         />
         <button className="flex justify-center items-center space-x-3 text-sm bg-black text-[#EFB359] uppercase rounded-b-xl h-fit w-full py-1 px-2 ">
           <Image
-            src="/chat-dashboard.svg"
+            src="/puzzle-yellow.svg"
             alt="chat-pic"
             width={40}
             height={40}
             className="w-6 h-6"
           />
-          <h2>Go To Chat</h2>
+          <h2>Go To Puzzle</h2>
         </button>
       </section>
       <section className="w-[52%] flex flex-col justify-around items-center py-3 px-2">
@@ -48,7 +48,7 @@ const CharacterCard = () => {
               <h2 className="font-semibold text-lg">7 questers</h2>
             </section>
           </div>
-          <section className="flex justify-center items-center space-x-1">
+          {/* <section className="flex justify-center items-center space-x-1">
             <Image
               src="/bounty.svg"
               alt="chat-pic"
@@ -57,7 +57,7 @@ const CharacterCard = () => {
               className="w-6 h-6"
             />
             <h2 className="font-semibold text-lg">Achieved on 19/11/2023</h2>
-          </section>
+          </section> */}
         </div>
         <section className="flex flex-col items-center justify-around">
           <section className="bg-black flex flex-col rounded-xl overflow-hidden">
