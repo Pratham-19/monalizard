@@ -1,9 +1,27 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-const CharacterCard = ({ img }: { img: string }) => {
+const CharacterCard = ({
+  img,
+  title,
+  piece,
+  price,
+  sponsor,
+  link,
+}: {
+  img: string;
+  title: string;
+  piece: string;
+  price: string;
+  sponsor: string;
+  link: string;
+}) => {
   return (
-    <div className="min-w-[30vw] max-w-[32vw] border-[1.6px] my-2 border-black flex rounded-xl overflow-hidden shadow-lg hover:scale-[1.03] transition-transform duration-300 ml-2">
+    <Link
+      href={link}
+      className="min-w-[30vw] max-w-[32vw] border-[1.6px] my-2 border-black flex rounded-xl overflow-hidden shadow-lg hover:scale-[1.03] transition-transform duration-300 ml-2"
+    >
       <section className="relative w-[48%] flex flex-col items-center overflow-hidden  p-2">
         <Image
           src={img}
@@ -25,7 +43,7 @@ const CharacterCard = ({ img }: { img: string }) => {
       </section>
       <section className="w-[52%] flex flex-col justify-around items-center py-3 px-2">
         <div className="h-[70%] flex flex-col justify-around items-center">
-          <h2 className="text-2xl font-semibold">El Pollo loco</h2>
+          <h2 className="text-2xl font-semibold">{title}</h2>
           <div className="flex justify-between space-x-2">
             <section className="flex justify-center items-center space-x-2">
               <Image
@@ -35,17 +53,19 @@ const CharacterCard = ({ img }: { img: string }) => {
                 height={40}
                 className="w-4 h-4"
               />
-              <h2 className="font-semibold text-lg">15 Pieces</h2>
+              <h2 className="font-semibold text-lg">{piece} Pieces</h2>
             </section>
             <section className="flex justify-center items-center space-x-2">
               <Image
-                src="/participants.svg"
+                src="/bounty.svg"
                 alt="chat-pic"
                 width={40}
                 height={40}
-                className="w-4 h-4"
+                className="w-6 h-6"
               />
-              <h2 className="font-semibold text-lg">7 questers</h2>
+              <h2 className="font-semibold text-lg text-start">
+                ${price} USDC
+              </h2>
             </section>
           </div>
           {/* <section className="flex justify-center items-center space-x-1">
@@ -77,7 +97,7 @@ const CharacterCard = ({ img }: { img: string }) => {
             </div>
             <div className="h-[52%]">
               <Image
-                src="/gnoisis.jpg"
+                src={sponsor}
                 alt="ques-sponsor"
                 width={250}
                 height={250}
@@ -87,7 +107,7 @@ const CharacterCard = ({ img }: { img: string }) => {
           </section>
         </section>
       </section>
-    </div>
+    </Link>
   );
 };
 

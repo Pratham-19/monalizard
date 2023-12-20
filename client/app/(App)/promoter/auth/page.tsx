@@ -9,14 +9,14 @@ const Signup = () => {
   const { isConnected } = useAccount();
   const { connect, connectors } = useConnect();
   if (isConnected) {
-    redirect("/user/dashboard");
+    redirect("/promoter/dashboard");
   }
   console.log(isConnected, connectors);
 
   return (
     <div className="w-screen h-screen flex relative">
       <div className="w-[53vw] flex flex-col justify-center items-center space-y-20">
-        <h2 className="text-6xl mb-4">Start Puzzling</h2>
+        <h2 className="text-6xl mb-4">Start Crafting</h2>
         <section className="flex flex-col space-y-4 mt-7">
           <button
             onClick={() => {

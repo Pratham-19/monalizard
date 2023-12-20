@@ -109,7 +109,7 @@ export default function Home() {
           </section>
 
           <Link
-            href="/user/signup"
+            href="/user/auth"
             className="w-[30%] relative rounded-2xl overflow-hidden cursor-pointer hover:scale-[1.03] transition-transform duration-300"
           >
             <Image
@@ -127,7 +127,7 @@ export default function Home() {
             <div className="absolute top-0 left-0 w-full h-full z-10 bg-[#fe8c27] opacity-[0.15] " />
           </Link>
           <Link
-            href="/promoter/signup"
+            href="/promoter/auth"
             className="w-[30%] relative rounded-2xl overflow-hidden cursor-pointer hover:scale-[1.03] transition-transform duration-300"
           >
             <Image

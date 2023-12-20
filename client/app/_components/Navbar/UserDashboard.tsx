@@ -50,6 +50,7 @@ const UserDashBoard = () => {
   useEffect(() => {
     const getPath = menu.find((item) => item.link === pathname);
     if (!getPath) return;
+    console.log(getPath, "hello");
     switch (getPath.name) {
       case "Dashboard":
         setShowDashboard(true);

@@ -5,19 +5,67 @@ import Image from "next/image";
 import React from "react";
 
 export default function Dashboard() {
+  const puzzles: {
+    img: string;
+    title: string;
+    piece: string;
+    price: string;
+    sponsor: string;
+    link: string;
+  }[] = [
+    {
+      img: "/quest-hen.png",
+      title: "El Pollo Loco",
+      piece: "14",
+      price: "1000",
+      sponsor: "/gnoisis.jpg",
+      link: "/user/dashboard/puzzle",
+    },
+    {
+      img: "/quest-hen.png",
+      title: "El Pollo Loco",
+      piece: "14",
+      price: "1000",
+      sponsor: "/gnoisis.jpg",
+      link: "/user/dashboard/puzzle",
+    },
+    {
+      img: "/quest-hen.png",
+      title: "El Pollo Loco",
+      piece: "14",
+      price: "1000",
+      sponsor: "/gnoisis.jpg",
+      link: "/user/dashboard/puzzle",
+    },
+    {
+      img: "/quest-hen.png",
+      title: "El Pollo Loco",
+      piece: "14",
+      price: "1000",
+      sponsor: "/gnoisis.jpg",
+
+      link: "/user/dashboard/puzzle",
+    },
+    {
+      img: "/quest-hen.png",
+      title: "El Pollo Loco",
+      piece: "14",
+      price: "1000",
+      sponsor: "/gnoisis.jpg",
+      link: "/user/dashboard/puzzle",
+    },
+  ];
   return (
     <div className="w-full h-full my-5 overflow-scroll">
       <h1 className="text-4xl font-semibold text-center uppercase my-3">
         DashBoard
       </h1>
 
-      <h2 className="text-2xl font-semibold">Characters Collected</h2>
+      <h2 className="text-2xl font-semibold">Active Puzzles</h2>
       <div className="my-5 overflow-x-auto flex gap-5">
-        <CharacterCard img={"/quest-hen.png"} />
-        <CharacterCard img={"/quest-hen.png"} />
-        <CharacterCard img={"/quest-hen.png"} />
-        <CharacterCard img={"/quest-hen.png"} />
-        <CharacterCard img={"/quest-hen.png"} />
+        {puzzles.map((puzzle) => (
+          <CharacterCard {...puzzle} key={puzzle.link} />
+        ))}
       </div>
       <section className="flex justify-between">
         <h2 className="text-2xl font-semibold">Pieces Minted</h2>

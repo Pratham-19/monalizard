@@ -15,7 +15,6 @@ const puzzles: {
   {
     img: "/quest-hen.png",
     sponsorImg: "/gnoisis.jpg",
-
     pieces: "10",
     price: "1000",
     title: '"EL POLLO LOCO"',

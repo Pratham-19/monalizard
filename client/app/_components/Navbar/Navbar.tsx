@@ -4,6 +4,7 @@ import { getInjectiveAddress, getEthereumAddress } from "@injectivelabs/sdk-ts";
 import { useAccount } from "wagmi";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 const Navbar = ({ className }: { className?: string }) => {
   const { address, isDisconnected } = useAccount();
@@ -18,7 +19,7 @@ const Navbar = ({ className }: { className?: string }) => {
         className
       )}
     >
-      <div className="flex space-x-2">
+      <Link href="/" className="flex space-x-2">
         <Image
           src="/logo.svg"
           alt="Navbar-logo"
@@ -27,7 +28,7 @@ const Navbar = ({ className }: { className?: string }) => {
           className="p-1 h-14"
         />
         <h2 className="font-extrabold my-auto uppercase text-xl">monalizard</h2>
-      </div>
+      </Link>
 
       <button
         className={
