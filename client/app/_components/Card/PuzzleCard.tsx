@@ -80,7 +80,11 @@ const PuzzleCard = ({
                   users: user,
                   id,
                 });
-                if (resp.data.success) {
+                const resp2 = await axios.post("/api/addPuzzleUser", {
+                  address,
+                  id,
+                });
+                if (resp.data.success && resp2.data.success) {
                   toast.dismiss("enroll");
                   setEnrolled(true);
                   toast.success("Enrolled");

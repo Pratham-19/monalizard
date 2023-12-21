@@ -69,7 +69,7 @@ export default function Dashboard({ params }: { params: { id: string } }) {
           />
 
           <h2 className="text-xl font-semibold text-center uppercase px-5">
-            $1500 USDC
+            0.4 INJ
           </h2>
         </button>
       </div>

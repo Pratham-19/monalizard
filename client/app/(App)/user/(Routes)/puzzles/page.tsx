@@ -48,8 +48,6 @@ export default function Puzzles() {
     getPuzzles();
   }, []);
 
-  console.log(puzzles);
-
   return (
     <div className="w-full h-full my-5 overflow-y-scroll">
       <h1 className="text-4xl my-4 font-semibold text-center uppercase">

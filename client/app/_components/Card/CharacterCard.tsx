@@ -63,9 +63,7 @@ const CharacterCard = ({
                 height={40}
                 className="w-6 h-6"
               />
-              <h2 className="font-semibold text-lg text-start">
-                ${price} USDC
-              </h2>
+              <h2 className="font-semibold text-lg text-start">${price} INJ</h2>
             </section>
           </div>
           {/* <section className="flex justify-center items-center space-x-1">
@@ -101,7 +99,7 @@ const CharacterCard = ({
                 alt="ques-sponsor"
                 width={250}
                 height={250}
-                className=""
+                className="h-16 object-cover"
               />
             </div>
           </section>

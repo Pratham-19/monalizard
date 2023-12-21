@@ -1,7 +1,6 @@
 import CharacterCard from "@/app/_components/Card/CharacterCard";
 import PieceCard from "@/app/_components/Card/PieceCard";
 import Footer from "@/app/_components/Footer";
-import Image from "next/image";
 import React from "react";
 
 export default function Dashboard() {
@@ -21,37 +20,13 @@ export default function Dashboard() {
       sponsor: "/gnoisis.jpg",
       link: "/user/dashboard/puzzle",
     },
-    {
-      img: "/quest-hen.png",
-      title: "El Pollo Loco",
-      piece: "14",
-      price: "1000",
-      sponsor: "/gnoisis.jpg",
-      link: "/user/dashboard/puzzle",
-    },
-    {
-      img: "/quest-hen.png",
-      title: "El Pollo Loco",
-      piece: "14",
-      price: "1000",
-      sponsor: "/gnoisis.jpg",
-      link: "/user/dashboard/puzzle",
-    },
-    {
-      img: "/quest-hen.png",
-      title: "El Pollo Loco",
-      piece: "14",
-      price: "1000",
-      sponsor: "/gnoisis.jpg",
 
-      link: "/user/dashboard/puzzle",
-    },
     {
-      img: "/quest-hen.png",
+      img: "/tree-puzzle.png",
       title: "El Pollo Loco",
       piece: "14",
       price: "1000",
-      sponsor: "/gnoisis.jpg",
+      sponsor: "/injective-logo.png",
       link: "/user/dashboard/puzzle",
     },
   ];
@@ -69,27 +44,10 @@ export default function Dashboard() {
       </div>
       <section className="flex justify-between">
         <h2 className="text-2xl font-semibold">Pieces Minted</h2>
-        <div className="bg-black text-[#EFB359] space-x-2 px-3 py-2 rounded-xl flex justify-center items-center">
-          <Image
-            src="/timer.svg"
-            alt="chat-pic"
-            width={40}
-            height={40}
-            className="w-6 h-6"
-          />
-          <h2>Next Airdrop</h2>
-          <h2>00:05:00</h2>
-        </div>
       </section>
       <div className="my-5 flex flex-wrap gap-4">
-        <PieceCard />
-        <PieceCard />
-        <PieceCard />
-        <PieceCard />
-        <PieceCard />
-        <PieceCard />
-        <PieceCard />
-        <PieceCard />
+        <PieceCard img={"/chicken-glasses.jpg"} />
+        <PieceCard img={"/c2.jpg"} />
       </div>
       <Footer />
     </div>
