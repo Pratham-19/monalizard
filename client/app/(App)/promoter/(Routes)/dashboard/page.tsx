@@ -6,7 +6,7 @@ import PromoterQuestCard from "@/app/_components/Card/PromoterQuestCard";
 export default function Dashboard() {
   const quests: PartnerDashboardQuest[] = [
     {
-      img: "/quest-hen.png",
+      img: "/tree-puzzle.png",
       title: "EL Pollo Loco",
       timer: "00:05:00",
       participants: "5",
@@ -19,7 +19,7 @@ export default function Dashboard() {
       timer: "00:05:00",
       participants: "2",
       bounty: "$1500 USDC",
-      status: QuestStatus.Ended,
+      status: QuestStatus.Active,
     },
     {
       img: "/quest-hen.png",

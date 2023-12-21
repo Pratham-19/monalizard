@@ -20,6 +20,7 @@ const Create = () => {
   const { address } = useAccount();
 
   const [questName, setQuestName] = useState("");
+  const [questDescription, setQuestDescription] = useState("");
   const [mainPic, setMainPic] = useState<string>();
   const [char1, setChar1] = useState<string>();
   const [char2, setChar2] = useState<string>();
@@ -144,15 +145,21 @@ const Create = () => {
         Create Puzzle
       </h1>
       <div>
+        <label>
+          <h2 className="font-[550] text-lg mt-5 mb-4">Puzzle name</h2>
+        </label>
         <input
-          className="w-full h-14 rounded-xl bg-white my-5 px-5 outline-none"
-          placeholder="Enter your quest name"
+          className="w-full h-14 rounded-xl bg-white mb-5 px-5 outline-none"
+          placeholder="Enter your puzzle name"
           value={questName}
           onChange={(e) => {
             setQuestName(e.target.value);
           }}
         />
-        <section className="flex justify-between space-x-3 h-[35vh] my-10 ">
+        <label>
+          <h2 className="font-[550] text-lg mt-5 mb-4">Puzzle Components</h2>
+        </label>
+        <section className="flex justify-between space-x-3 h-[35vh] mb-10 ">
           <div className=" border-2 border-dashed rounded-xl flex flex-col justify-center items-center space-y-2 p-5 w-[30%] relative">
             <input
               type="file"
@@ -283,6 +290,17 @@ const Create = () => {
             ))}
           </div>
         </section>
+        <label>
+          <h2 className="font-[550] text-lg mt-5 mb-4">Puzzle Description</h2>
+        </label>
+        <textarea
+          className="w-full h-36 rounded-xl bg-white mb-3 px-5 py-2 outline-none"
+          placeholder="Enter description"
+          value={questDescription}
+          onChange={(e) => {
+            setQuestDescription(e.target.value);
+          }}
+        />
         <section className="flex justify-between my-5 ">
           <div className="flex justify-center items-center">
             <section className="flex border bg-[#200F00] justify-center items-center space-x-2 p-3 rounded-l-xl">
@@ -417,7 +435,7 @@ const Create = () => {
               height={40}
               className="w-6 h-6"
             />
-            <h2> Submit Stake</h2>
+            <h2>Create</h2>
           </button>
         </section>
       </div>

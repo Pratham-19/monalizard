@@ -4,7 +4,7 @@ import Avatar from "boring-avatars";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useAccount } from "wagmi";
 
 const UserDashBoard = () => {
@@ -20,32 +20,35 @@ const UserDashBoard = () => {
     icon: string;
     link: string;
     isActive: boolean;
-  }[] = [
-    {
-      name: "Dashboard",
-      icon: "/dashboard.svg",
-      link: "/user/dashboard",
-      isActive: showDashboard,
-    },
-    {
-      name: "Puzzles",
-      icon: "/puzzle.svg",
-      link: "/user/puzzles",
-      isActive: showPuzzles,
-    },
-    {
-      name: "Quests",
-      icon: "/quest-nav.svg",
-      link: "/user/quest",
-      isActive: showQuest,
-    },
-    {
-      name: "Marketplace",
-      icon: "/marketplace.svg",
-      link: "/user/marketplace",
-      isActive: showMarketplace,
-    },
-  ];
+  }[] = useMemo(
+    () => [
+      {
+        name: "Dashboard",
+        icon: "/dashboard.svg",
+        link: "/user/dashboard",
+        isActive: showDashboard,
+      },
+      {
+        name: "Puzzles",
+        icon: "/puzzle.svg",
+        link: "/user/puzzles",
+        isActive: showPuzzles,
+      },
+      {
+        name: "Quests",
+        icon: "/quest-nav.svg",
+        link: "/user/quest",
+        isActive: showQuest,
+      },
+      {
+        name: "Marketplace",
+        icon: "/marketplace.svg",
+        link: "/user/marketplace",
+        isActive: showMarketplace,
+      },
+    ],
+    [showDashboard, showMarketplace, showQuest, showPuzzles]
+  );
 
   useEffect(() => {
     const getPath = menu.find((item) => item.link === pathname);
@@ -82,7 +85,7 @@ const UserDashBoard = () => {
         setShowQuest(false);
         setShowMarketplace(false);
     }
-  }, [pathname]);
+  }, [pathname, menu]);
   return (
     <div className="bg-[hsl(var(--primary))] w-full h-[calc(100vh-1rem)]  lg:h-[calc(100vh-2rem)] rounded-2xl overflow-hidden">
       <div className="h-[32%] relative">
@@ -122,7 +125,7 @@ const UserDashBoard = () => {
               )}
             </h2>
           ) : (
-            <h2 className="text-xl truncate">Sam.inj</h2>
+            <h2 className="text-xl truncate">Pratham.inj</h2>
           )}
         </section>
         <section>
@@ -145,7 +148,7 @@ const UserDashBoard = () => {
             </Link>
           ))}
         </section>
-        <section className="w-full  flex flex-col items-center  mx-auto rounded-xl text-center pt-3 pb-7 h-[44%]"></section>
+        <section className="w-full  flex flex-col items-center  mx-auto rounded-xl text-center pt-3 pb-7 h-[44%]" />
       </div>
     </div>
   );

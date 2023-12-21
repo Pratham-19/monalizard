@@ -5,6 +5,7 @@ import React from "react";
 import Image from "next/image";
 import { buttonVariants } from "@/app/_components/ui/button";
 import Link from "next/link";
+
 // import {
 //   prepareWriteContract,
 //   waitForTransaction,
@@ -45,10 +46,16 @@ export default function Dashboard({ params }: { params: { id: string } }) {
   ];
   return (
     <div className="w-full h-full my-5 overflow-scroll relative">
-      <Link href="/user/dashboard" className="absolute top-0 left-5 ">
-        Back
+      <Link href="/user/dashboard" className="absolute top-0 left-3 ">
+        <Image
+          src="/back.png"
+          width={100}
+          height={100}
+          alt="back"
+          className="w-6 h-6"
+        />
       </Link>
-      <div className="flex justify-between my-5">
+      <div className="flex justify-between mt-8 mb-5">
         <h1 className="text-4xl font-semibold text-center uppercase">
           &quot;EL Poco Loco&quot;
         </h1>
