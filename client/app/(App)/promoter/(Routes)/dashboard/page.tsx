@@ -82,7 +82,7 @@ export default function Dashboard() {
         )}
       </div>
 
-      <Footer />
+      <Footer className="mt-10" />
     </div>
   );
 }
