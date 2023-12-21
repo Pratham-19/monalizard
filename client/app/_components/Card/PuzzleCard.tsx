@@ -45,7 +45,7 @@ const PuzzleCard = ({
       </section>
       <section className="w-[55%] flex flex-col justify-center space-y-5 py-3 px-2">
         <h2 className="text-3xl font-semibold leading-5">{title}</h2>
-        <h3 className="basis-[40%]">{desc}</h3>
+        <h3 className="basis-[40%]">This is a nice app </h3>
         <div className="flex space-x-3">
           <button
             className={buttonVariants({

@@ -14,18 +14,18 @@ export default function Dashboard() {
   }[] = [
     {
       img: "/quest-hen.png",
-      title: "El Pollo Loco",
-      piece: "14",
-      price: "1000",
-      sponsor: "/gnoisis.jpg",
+      title: "El Pollo hen",
+      piece: "5",
+      price: "2",
+      sponsor: "/injective-logo.png",
       link: "/user/dashboard/puzzle",
     },
 
     {
-      img: "/tree-puzzle.png",
+      img: "/a2.png",
       title: "El Pollo Loco",
-      piece: "14",
-      price: "1000",
+      piece: "3",
+      price: "0.3",
       sponsor: "/injective-logo.png",
       link: "/user/dashboard/puzzle",
     },
