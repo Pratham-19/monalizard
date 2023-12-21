@@ -37,6 +37,10 @@ anvil :; anvil -m 'test test test test test test test test test test test junk' 
 
 NETWORK_ARGS := --rpc-url http://localhost:8545 --private-key $(DEFAULT_ANVIL_KEY) --broadcast
 
+ifeq ($(findstring --network injective,$(ARGS)),--network injective)
+	NETWORK_ARGS := --rpc-url $(INJECTIVE_RPC_URL) --private-key $(DEV_PRIVATE_KEY) --broadcast
+endif
+
 ifeq ($(findstring --network goerli,$(ARGS)),--network goerli)
 	NETWORK_ARGS := --rpc-url $(GOERLI_RPC_URL) --private-key $(DEV_PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) --legacy
 endif
@@ -121,3 +125,13 @@ deployMarketplace:
 
 setup:
 	make deployQuestNFT ARGS="--network baseGoerli" && make deployEscrow ARGS="--network baseGoerli" && make deployNFTDrop ARGS="--network baseGoerli" && make deployMarketplace ARGS="--network baseGoerli"
+
+deployMonaERC20:
+	@forge script script/DeployMonaERC20.s.sol:DeployMonaERC20 $(NETWORK_ARGS)
+
+deployMonaERC721:
+	@forge script script/DeployMonaERC721.s.sol:DeployMonaERC721 $(NETWORK_ARGS)
+
+deployMonaMarketPlace:
+	@forge script script/DeployMonaMarketPlace.s.sol:DeployMonaMarketPlace $(NETWORK_ARGS)
+
