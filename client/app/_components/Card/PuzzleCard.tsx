@@ -1,7 +1,10 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { buttonVariants } from "../ui/button";
-// import { format } from "date-fns";
+import toast from "react-hot-toast";
+import { useAccount } from "wagmi";
+import axios from "axios";
 
 const PuzzleCard = ({
   img,
@@ -12,6 +15,8 @@ const PuzzleCard = ({
   participants,
   time,
   sponsorImg,
+  user,
+  id,
 }: {
   img: string;
   pieces: string;
@@ -21,7 +26,12 @@ const PuzzleCard = ({
   participants: string;
   time: string;
   sponsorImg: string;
+  user?: String[];
+  id?: String;
 }) => {
+  const { address } = useAccount();
+
+  const [enroll, setEnrolled] = useState(false);
   return (
     <div className="w-full border my-3 border-[hsl(var(--primary))] flex rounded-xl overflow-hidden shadow-lg backdrop-blur-lg">
       <section className="w-[23%] flex justify-center items-center">
@@ -54,11 +64,33 @@ const PuzzleCard = ({
             <h2>{participants} participants</h2>
           </button>
           <button
+            disabled={enroll}
             className={buttonVariants({
               variant: "outline",
               className:
                 "hover:scale-[0.95] transition-transform duration-300 space-x-2",
             })}
+            onClick={async () => {
+              toast.loading("Enrolling", {
+                id: "enroll",
+              });
+              user?.push(address!);
+              try {
+                const resp = await axios.post("/api/addUserPuzzle", {
+                  users: user,
+                  id,
+                });
+                if (resp.data.success) {
+                  toast.dismiss("enroll");
+                  setEnrolled(true);
+                  toast.success("Enrolled");
+                }
+              } catch (e) {
+                toast.dismiss("enroll");
+                console.log(e);
+                toast.error("err enrolling");
+              }
+            }}
           >
             <Image
               src="/puzzle.svg"
@@ -67,7 +99,7 @@ const PuzzleCard = ({
               height={40}
               className="w-6 h-6"
             />
-            <h2>Enroll</h2>
+            <h2>{enroll ? "Enrolled" : "Enroll"}</h2>
           </button>
         </div>
       </section>
@@ -79,7 +111,7 @@ const PuzzleCard = ({
               alt="ques-sponsor"
               width={250}
               height={250}
-              className=""
+              className="h-16 object-cover"
             />
           </div>
           <div className="h-[48%] flex flex-col justify-center items-center mt-1 py-1">
@@ -119,7 +151,7 @@ const PuzzleCard = ({
             height={40}
             className="w-6 h-6"
           />
-          <h2 className="font-semibold text-2xl">${price} USDC</h2>
+          <h2 className="font-semibold text-2xl">{price}</h2>
         </section>
       </section>
     </div>

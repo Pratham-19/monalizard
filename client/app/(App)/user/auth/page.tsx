@@ -3,15 +3,14 @@
 import React from "react";
 import Image from "next/image";
 import { useAccount, useConnect } from "wagmi";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const Signup = () => {
-  const { isConnected } = useAccount();
+  const router = useRouter();
+  const { isConnected, address } = useAccount();
   const { connect, connectors } = useConnect();
-  if (isConnected) {
-    redirect("/user/dashboard");
-  }
-  console.log(isConnected, connectors);
 
   return (
     <div className="w-screen h-screen flex relative">
@@ -31,8 +30,54 @@ const Signup = () => {
               height={512}
               className="h-6 w-6"
             />
-            <h2>Connect Wallet</h2>
+            {isConnected ? (
+              <h2>
+                {address?.substring(0, 4)}...
+                {address?.substring(address.length - 4, address.length)}
+              </h2>
+            ) : (
+              <h2>Connect Wallet</h2>
+            )}
           </button>
+
+          {isConnected && (
+            <button
+              className="bg-[#200F00] text-[#EFB359] flex justify-center items-center space-x-2  p-3 mr-1 hover:scale-[1.05] transition-transform duration-300 rounded-xl"
+              onClick={async () => {
+                if (!address) {
+                  toast.error("Address is required");
+                  return;
+                }
+                toast.loading("Creating profile", {
+                  id: "creating",
+                });
+                try {
+                  const res = await axios.post("/api/addUser", {
+                    address,
+                  });
+                  if (res.data.success) {
+                    toast.dismiss("creating");
+                    toast.success("Profile created");
+                    router.push("/user/dashboard");
+                  }
+                } catch (e) {
+                  console.error(e);
+                  toast.dismiss("creating");
+                  toast.error("Profile creation failed");
+                  return;
+                }
+              }}
+            >
+              <Image
+                src="/submit.svg"
+                alt="hero"
+                width={40}
+                height={40}
+                className="w-6 h-6"
+              />
+              <h2>Create Account</h2>
+            </button>
+          )}
         </section>
       </div>
       <div className="w-[47vw] flex justify-end">

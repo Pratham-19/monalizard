@@ -64,7 +64,7 @@ export default function Dashboard() {
       </h1>
       <div className="my-5 flex flex-wrap gap-3">
         {puzzles.length === 0 ? (
-          <div className="min-h-[60vh] w-screen flex justify-center items-center">
+          <div className="min-h-[60vh] w-full flex justify-center items-center">
             <h2 className="text-xl font-semibold">No Puzzle created</h2>
           </div>
         ) : (
