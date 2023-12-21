@@ -1,4 +1,7 @@
 import { NFTStorage, File, Blob } from "nft.storage";
+import crypto from "crypto";
+import prisma from "@/prisma";
+import toast from "react-hot-toast";
 // import toast from "react-hot-toast";
 
 const NFT_STORAGE_TOKEN = process.env.NEXT_PUBLIC_NFT_STORAGE_KEY;
@@ -41,18 +44,49 @@ export const storeFiles = async ({ componentsData }: any) => {
   //   toast.success("Uploaded to IPFS!");
 };
 
+const generateRandomName = () => {
+  // Generate a random 8-byte buffer
+  const randomBuffer = crypto.randomBytes(8);
+
+  // Convert the buffer to a hex string
+  const randomHexString = randomBuffer.toString("hex");
+
+  // Return the hex string as the random name
+  return randomHexString;
+};
+
 export const storeFile = async (
   file: BlobPart,
   title: string,
-  description: string
+  description?: string
 ) => {
-  const imageFile = new File([file], "nft.png", {
+  const imgName = generateRandomName + ".png";
+  const imageFile = new File([file], imgName, {
     type: "image/png",
   });
   const metadata = await client.store({
     name: title,
-    description: description,
+    description: description ?? "",
     image: imageFile,
   });
-  return "https://" + metadata.ipnft + ".ipfs.dweb.link/metadata.json";
+  return "https://" + metadata.ipnft + ".ipfs.dweb.link/" + imgName;
+};
+export const storeImg = async (
+  file: BlobPart,
+  title: string,
+  description?: string
+) => {
+  const imgName = generateRandomName() + ".png";
+  const imageFile = new File([file], imgName, {
+    type: "image/png",
+  });
+  const metadata = await client.store({
+    name: title,
+    description: description ?? "",
+    image: imageFile,
+  });
+
+  return (
+    "https://nftstorage.link/ipfs" + metadata?.data?.image?.href?.substring(6)
+  );
 };

@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-// import toast from "react-hot-toast";
+import toast from "react-hot-toast";
 import Footer from "@/app/_components/Footer";
 // import { storeFile, storeFiles } from "@/app/_lib/helper";
 import { Components } from "@/app/_lib/types";
@@ -15,10 +15,11 @@ import { Components } from "@/app/_lib/types";
 // import QuestNFT from "@/app/_abis/abi/QuestNFT.json";
 import { parseEther } from "viem";
 import { useAccount } from "wagmi";
+import { storeImg } from "@/app/_lib/helper";
+import axios from "axios";
 
 const Create = () => {
   const { address } = useAccount();
-
   const [questName, setQuestName] = useState("");
   const [questDescription, setQuestDescription] = useState("");
   const [mainPic, setMainPic] = useState<string>();
@@ -55,6 +56,7 @@ const Create = () => {
   const [mainPicValue, setMainPicValue] = useState<File | null>(null);
 
   const [stakePrice, setStakePrice] = useState<string>("0");
+  const [expiryDate, setExpiryDate] = useState<string>("");
 
   const components: {
     name: string;
@@ -139,6 +141,56 @@ const Create = () => {
     };
   };
 
+  const handleSubmit = async () => {
+    if (!questName) {
+      toast.error("Quest name is required");
+      return;
+    }
+    if (!questDescription) {
+      toast.error("Quest description not provided");
+      return;
+    }
+    if (!mainPicValue) {
+      toast.error("Main puzzle picture not provided");
+      return;
+    }
+    if (stakePrice == "0") {
+      toast.error("Stake price is required to be > 0");
+      return;
+    }
+    if (!expiryDate) {
+      toast.error("Expiry date is required");
+      return;
+    }
+    toast.loading("Crafting Puzzle", {
+      id: "crafting",
+    });
+    const imgUrl = await storeImg(
+      mainPicValue,
+      address ?? "",
+      address + " banner Image"
+    );
+
+    toast.dismiss("crafting");
+    toast.loading("Uploading pieces", {
+      id: "uploading",
+    });
+    const resp = await axios.post("/api/addPuzzle", {
+      description: questDescription,
+      title: questName,
+      img: imgUrl,
+      endDate: expiryDate,
+      ownerAddress: address,
+    });
+
+    if (resp.data.success) {
+      toast.dismiss("uploading");
+
+      toast.success("Puzzle created successfully");
+    } else {
+      toast.error("Error creating puzzle");
+    }
+  };
   return (
     <div className="w-full h-full my-5 overflow-scroll">
       <h1 className="text-4xl font-semibold text-center uppercase">
@@ -160,7 +212,7 @@ const Create = () => {
           <h2 className="font-[550] text-lg mt-5 mb-4">Puzzle Components</h2>
         </label>
         <section className="flex justify-between space-x-3 h-[35vh] mb-10 ">
-          <div className=" border-2 border-dashed rounded-xl flex flex-col justify-center items-center space-y-2 p-5 w-[30%] relative">
+          <div className=" border-2 border-dashed rounded-xl flex flex-col justify-center items-center space-y-2 p-5 w-[38%] relative">
             <input
               type="file"
               ref={mainRef}
@@ -206,10 +258,10 @@ const Create = () => {
               </>
             )}
           </div>
-          <div className="w-[65%] flex flex-wrap gap-4 relative">
+          <div className="w-[60%] flex justify-center flex-wrap gap-4 relative">
             {components.map((component, index) => (
               <div
-                className=" border-2 border-dashed rounded-xl flex flex-col justify-center items-center w-28 h-24 relative"
+                className="border-2 border-dashed rounded-xl flex flex-col justify-center items-center w-32 h-28 relative"
                 key={component.name}
               >
                 <input
@@ -301,7 +353,7 @@ const Create = () => {
             setQuestDescription(e.target.value);
           }}
         />
-        <section className="flex justify-between my-5 ">
+        <section className="flex justify-between my-5">
           <div className="flex justify-center items-center">
             <section className="flex border bg-[#200F00] justify-center items-center space-x-2 p-3 rounded-l-xl">
               <Image
@@ -311,15 +363,18 @@ const Create = () => {
                 height={40}
                 className="w-6 h-6"
               />
-              <h2 className="text-[#EFB359] ">Set Timer</h2>
+              <h2 className="text-[#EFB359] ">Set Expiry</h2>
             </section>
             <input
               placeholder="DD:HH:MM:SS"
-              className="bg-white border border-[#200F00] text-[#EFB359] py-3 px-1 rounded-r-xl outline-none w-[40%]"
-              type="string"
+              onChange={(e) => {
+                setExpiryDate(e.target.value);
+              }}
+              className="bg-white border border-[#200F00] text-[#EFB359] py-3 px-1 rounded-r-xl outline-none w-[45%]"
+              type="date"
             />
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex">
             <section className="flex border bg-[#200F00] justify-center items-center space-x-2 p-3 rounded-l-xl">
               <Image
                 src="/trophy.svg"
@@ -328,20 +383,22 @@ const Create = () => {
                 height={40}
                 className="w-6 h-6"
               />
-              <h2 className="text-[#EFB359] ">Set Price (USDC)</h2>
+              <h2 className="text-[#EFB359] ">Set Price (INJ)</h2>
             </section>
             <input
               type="number"
               onChange={(e) => {
                 setStakePrice(e.target.value);
               }}
-              className="bg-white border border-[#200F00] text-[#EFB359] py-3 px-1 w-[30%] rounded-r-xl outline-none"
-              placeholder="$ 0.00"
+              className="bg-white border border-[#200F00] text-center
+               py-3 px-1 w-[30%] rounded-r-xl outline-none"
+              placeholder="0 INJ"
             />
           </div>
 
           <button
-            className="bg-[#200F00] text-[#EFB359] flex justify-center items-center space-x-2  py-3 px-1 rounded-xl"
+            className="bg-[#200F00] text-[#EFB359] flex justify-center items-center space-x-2  p-3 mr-1 hover:scale-[1.05] transition-transform duration-300 rounded-xl"
+            onClick={handleSubmit}
             // onClick={async () => {
             //   if (!questName) {
             //     // toast.error("Quest name is required");
@@ -439,7 +496,7 @@ const Create = () => {
           </button>
         </section>
       </div>
-      <Footer className="mt-4" />
+      <Footer className="mt-8" />
     </div>
   );
 };

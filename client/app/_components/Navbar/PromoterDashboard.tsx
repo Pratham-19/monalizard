@@ -36,7 +36,7 @@ const PromoterDashBoard = () => {
       {
         name: "Add Quest",
         icon: "/quest-nav.svg",
-        link: "/promoter/create",
+        link: "/promoter/quest",
         isActive: showQuest,
       },
     ],

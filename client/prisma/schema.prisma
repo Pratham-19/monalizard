@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Promoter {
+  id   String     @id @default(auto()) @map("_id") @db.ObjectId
+  walletAddress  String    @unique
+  bannerImg   String 
+  puzzles    String[]
+}
+
+model Puzzles {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  title        String    @unique
+  description  String
+  img          String
+  ownerAddress String
+  endDate      String
+  users       String[]  
+  pieces      String[]  
+}
+
+
+// model User {
+//   id String 
+// }
+
+model Piece {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  puzzleId     String
+  img  String
+  title        String   @unique
+}
