@@ -27,9 +27,12 @@ model Puzzless {
 }
 
 
-// model User {
-//   id String 
-// }
+model User {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  walletAddress  String    @unique
+  puzzles    String[]
+  pieces      String[]
+}
 
 model Piece {
   id           String    @id @default(auto()) @map("_id") @db.ObjectId
