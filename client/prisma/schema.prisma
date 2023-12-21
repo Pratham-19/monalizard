@@ -14,13 +14,14 @@ model Promoter {
   puzzles    String[]
 }
 
-model Puzzles {
+model Puzzless {
   id           String    @id @default(auto()) @map("_id") @db.ObjectId
   title        String    @unique
   description  String
   img          String
   ownerAddress String
   endDate      String
+  price       String
   users       String[]  
   pieces      String[]  
 }

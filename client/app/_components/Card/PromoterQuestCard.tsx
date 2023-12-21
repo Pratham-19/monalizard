@@ -12,10 +12,7 @@ const PartnerQuestCard = ({
   status,
 }: PartnerDashboardQuest) => {
   return (
-    <Link
-      href="/promoter/dashboard/1"
-      className="w-[35vw] border my-2 border-black flex rounded-xl overflow-hidden "
-    >
+    <div className="w-[35vw] border my-2 border-black flex rounded-xl overflow-hidden ">
       <section className="relative w-[48%] flex flex-col items-center overflow-hidden border p-2">
         <Image
           src={img}
@@ -91,7 +88,7 @@ const PartnerQuestCard = ({
           )}
         </section>
       </section>
-    </Link>
+    </div>
   );
 };
 

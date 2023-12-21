@@ -5,12 +5,12 @@ import toast from "react-hot-toast";
 import Footer from "@/app/_components/Footer";
 // import { storeFile, storeFiles } from "@/app/_lib/helper";
 import { Components } from "@/app/_lib/types";
-// import {
-//   prepareWriteContract,
-//   waitForTransaction,
-//   writeContract,
-// } from "wagmi/actions";
-// import EscrowAccount from "@/app/_abis/abi/Escrow.json";
+import {
+  prepareWriteContract,
+  waitForTransaction,
+  writeContract,
+} from "wagmi/actions";
+import StakeContract from "@/app/_lib/abi/StakeContract.json";
 // import NFTDrop from "@/app/_abis/abi/NFTDrop.json";
 // import QuestNFT from "@/app/_abis/abi/QuestNFT.json";
 import { parseEther } from "viem";
@@ -119,17 +119,17 @@ const Create = () => {
       setMainPic("");
       return;
     }
-    const fileTypes = ["image/jpeg", "image/jpg", "image/png"];
+    const fileTypes = ["image/png"];
     const { size, type } = file;
     if (!fileTypes.includes(type)) {
-      //   toast.error("File format must be either png or jpg");
+      toast.error("File format must be either png ");
 
       return false;
     }
     setMainPicValue(file);
 
     if (size / 1024 / 1024 > 2) {
-      //   toast.error("File size exceeded the limit of 2MB");
+      toast.error("File size exceeded the limit of 2MB");
       return false;
     }
     const reader = new FileReader();
@@ -171,23 +171,78 @@ const Create = () => {
       address + " banner Image"
     );
 
-    toast.dismiss("crafting");
-    toast.loading("Uploading pieces", {
-      id: "uploading",
-    });
+    
     const resp = await axios.post("/api/addPuzzle", {
       description: questDescription,
       title: questName,
       img: imgUrl,
       endDate: expiryDate,
       ownerAddress: address,
+      price: stakePrice + " INJ",
     });
-
+    toast.dismiss("crafting");
+    
     if (resp.data.success) {
-      toast.dismiss("uploading");
+      toast.loading("Uploading pieces", {
+        id: "uploading",
+      });
 
-      toast.success("Puzzle created successfully");
+      let pieces = [];
+
+      for (const [key, value] of Object.entries(componentValues)) {
+        if (value) {
+          const imgUrl = await storeImg(
+            value,
+            address ?? "",
+            address + " piece " + key
+          );
+          const pid = await axios.post("/api/addPiece", {
+            puzzleId: resp.data.data.id,
+            title: questName + " piece " + key,
+            img: imgUrl,
+          });
+          pieces.push(pid.data.data.id);
+        }
+      }
+      console.log(pieces);
+      const pieceResp = await axios.post("/api/updatePuzzle", {
+        id: resp.data.data.id,
+        pieces,
+      });
+
+      if (pieceResp.data.success) {
+        toast.dismiss("uploading");
+        toast.loading("Staking Amount", {
+          id: "staking",
+        });
+
+        const { request } = await prepareWriteContract({
+          address: StakeContract.address as `0x${string}`,
+          abi: StakeContract.abi,
+          functionName: "stake",
+          value: parseEther(stakePrice),
+        });
+        const { hash } = await writeContract(request);
+        toast.dismiss("staking");
+        toast.loading("Confirming", {
+          id: "confirm",
+        });
+        await waitForTransaction({ hash })
+          .then(() => console.log("transaction confirmed"))
+          .catch((error) => {
+            toast.dismiss("confirm");
+            console.log("error", error);
+          });
+
+        toast.dismiss("confirm");
+
+        toast.success("Puzzle created successfully");
+      } else {
+        toast.dismiss("uploading");
+        toast.error("Error creating puzzle");
+      }
     } else {
+      toast.dismiss("uploading");
       toast.error("Error creating puzzle");
     }
   };
@@ -399,33 +454,7 @@ const Create = () => {
           <button
             className="bg-[#200F00] text-[#EFB359] flex justify-center items-center space-x-2  p-3 mr-1 hover:scale-[1.05] transition-transform duration-300 rounded-xl"
             onClick={handleSubmit}
-            // onClick={async () => {
-            //   if (!questName) {
-            //     // toast.error("Quest name is required");
-            //     return;
-            //   }
-            //   if (!mainPicValue) {
-            //     // toast.error("Main picture is required");
-            //     return;
-            //   }
-            //   if (stakePrice == "0") {
-            //     // toast.error("Stake price is required to be > 0");
-            //     return;
-            //   }
 
-            // //   toast.loading("Uploading files", {
-            // //     id: "uploading",
-            // //   });
-            //   const tokenUri = await storeFile(
-            //     mainPicValue,
-            //     questName,
-            //     "this is a sample quest"
-            //   );
-            // //   toast.dismiss("uploading");
-            // //   toast.success("Files uploaded successfully");
-            // //   toast.loading("Staking", {
-            // //     id: "staking",
-            // //   });
             //   const { request } = await prepareWriteContract({
             //     address: EscrowAccount.address as `0x${string}`,
             //     abi: EscrowAccount.abi,

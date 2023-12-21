@@ -2,9 +2,8 @@ import prisma from "@/prisma";
 
 export async function POST(req: Request) {
   //   console.log(req);
-  const { description, title, img, endDate, ownerAddress, price } =
-    await req.json();
-  if (!description || !title || !img || !endDate || !ownerAddress || !price) {
+  const { puzzleId, title, img } = await req.json();
+  if (!puzzleId || !title || !img ) {
     return Response.json(
       { success: false, message: "Invalid request" },
       { status: 400 }
@@ -12,18 +11,15 @@ export async function POST(req: Request) {
   }
 
   try {
-    const data = await prisma.puzzless.create({
+    const data = await prisma.piece.create({
       data: {
-        description,
+        puzzleId,
         title,
-        ownerAddress,
-        endDate,
         img,
-        price,
       },
     });
     return Response.json(
-      { success: true, message: "Puzzle created", data: data },
+      { success: true, message: "Piece created",data: data },
       { status: 200 }
     );
   } catch (err) {
