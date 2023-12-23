@@ -135,3 +135,5 @@ deployMonaERC721:
 deployMonaMarketPlace:
 	@forge script script/DeployMonaMarketPlace.s.sol:DeployMonaMarketPlace $(NETWORK_ARGS)
 
+setNFTContract:
+	@forge script script/Interactions.s.sol:SetNFTContract $(NETWORK_ARGS)

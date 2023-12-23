@@ -9,6 +9,28 @@ import {HelperConfig} from "./HelperConfig.s.sol";
 import {QuestNFT} from "../src/QuestNFT.sol";
 import {Escrow} from "../src/Escrow.sol";
 import {NFTDrop} from "../src/NFTDrop.sol";
+import {MonaMarketPlace} from "../src/MonaMarketPlace.sol";
+
+contract SetNFTContract is Script {
+    function setNFTContract(MonaMarketPlace monaMarketPlace, uint256 deployer_key, address nftContract) public {
+        vm.startBroadcast(deployer_key);
+        monaMarketPlace.setNFTContract(nftContract);
+        vm.stopBroadcast();
+    }
+
+    function setNFTContractUsingConfigs() public {
+        uint256 deployer_key = vm.envUint("DEV_PRIVATE_KEY");
+        address mostRecentlyDeployedMonaMarketPlace = 0x75d18e3eBdb7F91E5FA0a14eeb88E5f7225A013e;
+        MonaMarketPlace monaMarketPlace = MonaMarketPlace(payable(mostRecentlyDeployedMonaMarketPlace));
+        address mostRecentlyDeployedMonaERC721 = 0xbE42ce01a127E501d6173f5bc21FF545f15bDdD8;
+
+        setNFTContract(monaMarketPlace, deployer_key, mostRecentlyDeployedMonaERC721);
+    }
+
+    function run() public {
+        setNFTContractUsingConfigs();
+    }
+}
 
 contract CreateQuestNFT is Script {
     function createQuest(address _questNFTAddress, uint256 deployer_key, string memory _uri) public {
